@@ -1,0 +1,10 @@
+[Unit]
+Description=Disables the red logo LED at startup
+After=basic.target suspend.target
+
+[Service]
+Type=exec
+ExecStart=sh -c "echo 0 | sudo tee /sys/class/leds/tpacpi::power/brightness "
+
+[Install]
+WantedBy=basic.target suspend.target

@@ -1,0 +1,14 @@
+[Unit]
+Description=Disables the red logo LED at startup-wakeup
+After=sysinit.target
+After=suspend.target
+After=suspend-then-hibernate.target
+After=hybrid-sleep.target
+After=hibernate.target
+
+[Service]
+Type=oneshot
+ExecStart=sh -c "echo 0 | sudo tee /sys/class/leds/tpacpi::power/brightness "
+
+[Install]
+WantedBy=sleep.target
