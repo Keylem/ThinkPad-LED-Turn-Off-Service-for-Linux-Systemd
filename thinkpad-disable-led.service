@@ -1,10 +1,15 @@
 [Unit]
 Description=Disables the red logo LED at startup
-After=basic.target suspend.target
-
+#After=basic.target suspend.target
+After=sysinit.target
+After=suspend.target
+After=suspend-then-hibernate.target
+After=hybrid-sleep.target
+After=hibernate.target
 [Service]
-Type=exec
-ExecStart=sh -c "echo 0 | sudo tee /sys/class/leds/tpacpi::power/brightness "
 
+Type=oneshot
+ExecStart=sh -c "echo 0 | sudo tee /sys/class/leds/tpacpi::power/brightness "
+ExecStart=sh -c "echo 0 | sudo tee /sys/class/leds/tpacpi::lid_logo_dot/brightness "
 [Install]
 WantedBy=basic.target suspend.target
