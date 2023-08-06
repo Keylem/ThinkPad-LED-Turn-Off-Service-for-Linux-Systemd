@@ -6,11 +6,11 @@
  - Change the LED locations on the services according to your setup: (you can find them at /sys/class/leds/ with tpacpi::x folder
 Example:
 [Service]
-Type=exec
+Type=oneshot
 ExecStart=sh -c "echo 0 | sudo tee /sys/class/leds/tpacpi::power/brightness "
 
 You can also disable multiple LEDs at once with using multiple ExecStart entries
 [Service]
-Type=exec
+Type=oneshot
 ExecStart=sh -c "echo 0 | sudo tee /sys/class/leds/tpacpi::power/brightness "
 ExecStart=sh -c "echo 0 | sudo tee /sys/class/leds/tpacpi::lid_logo_dot/brightness "
